@@ -1,0 +1,50 @@
+<安裝與設定(github)>
+安裝
+git config
+使用shell
+
+<簡介>
+traced staged commited
+pointer(?): HEAD, branch, SHA-1, tag
+
+<一個人玩的單機GIT>
+git init
+git clone
+rm ./.git/\
+.gitignore
+git add
+git commit
+git commit --amend
+git checkout --
+git rm --cached
+git rm
+git reset
+git status
+git log
+git branch
+git branch -m
+git branch -d
+git branch -D
+git merge
+git rebase
+git rebase --onto <target branch> <over branch> <from branch>
+git rebase -i
+
+<一個人玩的線上GIT>
+git push --force
+git fetch
+git pull
+git push
+
+<大家一起的線上GIT>
+git remote
+
+
+<稍微進階的使用>
+git tag -a
+git tag -d
+git push <remote server> <tag name>
+git push <remote server> :refs/tags/<tag name>
+git push <from branch>:<to branch>
+git stash
+git stash drop
