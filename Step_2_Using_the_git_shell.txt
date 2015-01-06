@@ -1,0 +1,56 @@
+第二彈．Git Shell的基本操作
+
+## 對指令有問題時，可以執行「git <指令> --help」以獲得更多功能資訊。執行「git help」則會顯示基本幫助訊息。 ##
+
+使用GIT命令列-GitHub的功能:
+
+/建立專案/
+00. 啟動GitHub安裝時給的Git Shell，預設以powershell環境開啟，並進到「文件/GitHub/」路徑下。
+01. 用「cd <project path>」切換到已存在的專案，或是下「git init <project>」建立新專案，請避免使用非ASCII字元。
+HINT: <東西>代表東西指的內容，不需要輸入 < 與 > 。另外也可以用「git clone <repository>」的方式複製遠端git專案。
+HINT: <repository>可使用「file://」「http(s)://」「git://」「user@server:path/project.git」(SSH)等協定或一般資料夾路徑。
+HINT: 新建與下載專案後，請記得cd到該專案目錄再對該專案進行操作。
+
+/專案狀態/
+02. 切換到專案資料夾後，可以看到彩色顯示的分支名稱，在該專案跟來源repo一樣新的時候，顏色為水藍色。
+03. 進行檔案編輯後，可以下「git status」看目前的狀態，在提示列上也會出現紅色的+~-數字代表改變的數量。
+04. 這時候使用「git diff」便會顯示當下與最後commit之間的差異。
+HINT: 使用status可能會顯示以下幾種類型：untracked, unstaged, to be commited，這三種狀態在GITHUB程式中並沒有特別顯示。
+HINT: 要了解其中的差異就要知道git運作的方式，我們知道git會自動追蹤專案資料夾中的檔案，而git會把其中的資料主要分成4種：
+HINT: 一開始加入新檔案會算是untracked(尚未追蹤)，而已追蹤但有修改的檔案會是unstaged(未暫存)，接下來我們使用git，
+HINT: 把想要的檔案加入暫存，稱為staged，也就是前面的to be commited，最後確定所有的暫存都要被提交，
+HINT: 就commit到目前的分支中，這時候所有commit出去的部分會以最新的記錄重新追蹤，尋找是否還有被變更的部分。
+HINT: 簡單來看，檔案狀態大概會是以下關係：
+HINT:                     新檔案 --(暫存)-> 已暫存 --(提交)-> 未修改 //持續追蹤
+HINT:   未修改 --(修改)-> 已修改 --(暫存)-> 已暫存 --(提交)-> 未修改 //持續追蹤
+HINT:                   移除檔案 --(暫存)-> 已暫存 --(提交)-> 不再追蹤
+TIPS: 使用「git log」可以看過去的commit記錄。加上「--oneline」會只顯示SHA跟commit訊息，加上「-<numbers>」可以限定筆數。
+
+/加入暫存、提交/
+05. 要將修改過的檔案加入暫存，請使用「git add <file>」或「git stage <file>」，使用「.」作為<file>可以代表所有檔案。
+06. 加入暫存後，在分支名稱後方會出現綠色的+~-數字代表改變的數量，與代表修改數量的紅色提示相似。
+07. 確定要將暫存提交時，使用「git commit」指令會跳出預設的文字編輯器，輸入commit訊息後存檔關閉便會留下記錄。
+HINT: commit時出現的文字檔，由#字開頭的行會帶有解說，而且執行時會自動被忽略。若將文字內容全部刪除則會取消該次提交。
+HINT: 也可以使用「git commit -m "<message>"」來直接執行。
+HINT: 在commit後分支文字的顏色可能會變成綠色，代表你現在分支的commit記錄超前於來源repo的commit記錄。
+HINT: 另外紅色字代表紀錄落後，黃色字代表有分歧，判定的基準為前次取得的狀態，不一定是最新狀態。
+
+/取消暫存、恢復檔案/
+08. 如果要取消已加入暫存的檔案，請使用「git reset HEAD <file>」指令。
+09. 若是想拋棄現在做的變更，讓檔案恢復到之前記錄的內容，請使用「git checkout HEAD -- <file>」。
+HINT: 將會恢復到最新stage狀態，或是commit狀態
+
+/更新GitHub repository/
+10. 雖然之前可能做了許多commit，但是這些提交目前都只影響了你電腦的工作專案，要執行同步才能讓GitHub的資料庫也一起更新。
+11. 首先先執行「git pull」這會從預設的遠端repo抓取最新的資料，接著再執行「git push」，在沒有衝突的情況下就會完成更新。
+HINT: 如果pull下來的commit有分歧，便無法直接push，此時可以使用「--force」參數，強制以本機的資料更新(請小心使用)。
+HINT: 如果你確定現在的狀況跟遠端一定不會有分歧，也可以不pull直接push。
+HINT: 另外pull會連資料本身都一起抓取下來，如果只想取得狀態的話，可以使用「git fetch」抓取狀態，想要資料時再pull。
+
+/備註：GitHub與git檔案狀態之間的差異/
+TIPS: 對於GitHub程式來說，檔案的狀態可以說只有 uncommited, commited, repository 三種，不管stage的有無都算uncommited，
+TIPS: 而只有上傳成功的資料才算在repository，不然都只是本機資料。
+TIPS: 而對git來說，由於遠端repository可以有很多個，並不一定要被綁死在GitHub預設的repo上，所以雖然主要也是三階段，
+TIPS: 但是是不同的本機內 unstaged, staged, commited 三階段。
+TIPS: 簡單來說，兩者都可依檔案分為[A.可任意修改的狀態], [B.無法修改的暫存狀態], 跟 [C.無法修改的確定狀態]三種狀態，
+TIPS: 雖然兩者在其中有著狀態定義上的小差異，一個是以github服務repo為確定狀態，一個是以本機為確定狀態，但概念是差不多的。
