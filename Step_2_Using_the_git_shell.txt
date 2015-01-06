@@ -6,10 +6,10 @@
 
 /建立專案/
 00. 啟動GitHub安裝時給的Git Shell，預設以powershell環境開啟，並進到「文件/GitHub/」路徑下。
-01. 用「cd <project path>」切換到已存在的專案，或是下「git init <project>」建立新專案，請避免使用非ASCII字元。
-HINT: <東西>代表東西指的內容，不需要輸入 < 與 > 。另外也可以用「git clone <repository>」的方式複製遠端git專案。
-HINT: <repository>可使用「file://」「http(s)://」「git://」「user@server:path/project.git」(SSH)等協定或一般資料夾路徑。
-HINT: 新建與下載專案後，請記得cd到該專案目錄再對該專案進行操作。
+01. 用「cd <project path>」切換到已存在的專案，或是下「git init <project name>」建立新專案，請避免使用非ASCII字元。
+HINT: <東西>代表東西指的內容，不需要輸入 < 與 > 。另外也可以用「git clone <remote repository>」的方式複製遠端git專案。
+HINT: <remote repository>可使用「file://」、「http(s)://」、「git://」、「user@server:path/project.git」(SSH)等協定，
+HINT: 或使用一般資料夾路徑。新建與下載專案後，請記得cd到該專案目錄再對該專案進行操作。
 
 /專案狀態/
 02. 切換到專案資料夾後，可以看到彩色顯示的分支名稱，在該專案跟來源repo一樣新的時候，顏色為水藍色。
