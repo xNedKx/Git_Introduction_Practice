@@ -87,7 +87,7 @@ git bisect good
 git bisect reset
 git bisect run
 
-"HEAD@{n}"
+"refs@{n or t}"
 HEAD^
 HEAD^2(when merge)
 HEAD~3 = HEAD^^^
