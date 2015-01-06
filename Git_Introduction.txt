@@ -8,7 +8,7 @@ git config --list
 
 <簡介>
 traced; staged; commited;
-pointer(?): HEAD(default), branch, SHA-1(>=4), tag
+refs: HEAD(default), branch, SHA-1(>=4), tag
 
 <一個人玩的單機GIT>
 git init
@@ -20,7 +20,7 @@ git commit
 git diff
 git diff --word-diff
 git commit --amend
-git checkout --
+git checkout <refs> (--) file
 git rm --cached
 git rm
 git clean
