@@ -26,6 +26,7 @@ HINT:   未修改 --(修改)-> 已修改 --(暫存)-> 已暫存 --(提交)-> 未
 HINT:                   移除檔案 --(暫存)-> 已暫存 --(提交)-> 不再追蹤
 HINT: 暫存空間只有一個，因此若對同一個檔案多次修改暫存，只會保留commit後到最後stage的差異，而不會保留暫存間的差異。
 TIPS: 使用「git log」可以看過去的commit記錄。加上「--oneline」會只顯示SHA跟commit訊息，加上「-<numbers>」可以限定筆數。
+TIPS: 使用「git show <commit>」輸入commit SHA可以看特定的commit記錄。
 TIPS: 使用「git blame <file>」可以看檔案的內容分別為哪幾次commit修改的結果，以^開頭的SHA代表第一次commit(新增檔案)。
 
 /加入暫存、提交/
