@@ -12,7 +12,17 @@ html,body {
     background-color: #FCFCFC;
     font-family: 'Baumans', cursive;
 }
-p {
+#header {
+    padding: 16px;
+    background-color: #F0F0F0;
+    font-family: 'Chau Philomene One', sans-serif;
+    font-size: 2em;
+    border-bottom: 1px solid #CCC;
+}
+#content {
+    padding: 1em;
+}
+#content p {
     margin: 0;
     padding: 1em;
 }
@@ -30,18 +40,33 @@ a.link:active {
 a.link:visited {
     color: #810;
 }
+.more {
+    color: #555;
+}
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 6px 0;
+    color: #555;
+    background-color: #F0F0F0;
+    font-family: 'Chau Philomene One', sans-serif;
+    font-weight: bold;
+    font-size: 0.7em;
+    border-top: 1px solid #CCC;
+}
 </style>
 </head>
 <body>
-<div style="font-size: 2em; font-family: 'Chau Philomene One', sans-serif;  padding: 16px; background-color: #F0F0F0; border-bottom: 1px solid #CCC;">Index of xNedKx's GitHub Introduction</div>
-<div style="padding: 1em;">
+<div id="header">Index of xNedKx's GitHub Introduction</div>
+<div id="content">
 <p><a href="./Step_1_Using_the_github_gui_in_windows_brief.txt" class='link'>第一彈．超精簡GitHub程式使用解說</a></p>
 <p><a href="./Step_2_Using_the_git_shell.txt" class='link'>第二彈．Git Shell的基本操作</a></p>
 <p><a>第三彈．Git Shell操作：分支的建立、合併與清除</a></p>
 <p><a>第四彈．Git Shell操作：commits重整</a></p>
 <p><a>第五彈．Git Shell操作：與人合作的Git</a></p>
 </div>
-<div><p style="color: #555;">進階閱讀： <a href="http://git-scm.com/book/zh-tw/v1" class='link'>Pro Git</a> @git-scm.com</p></div>
-<a href="https://github.com/" target="_blank"><div style="font-size: 0.7em; position: absolute; bottom: 0; width: 100%; background-color: #F0F0F0; padding: 6px 0; border-top: 1px solid #CCC;color: #555; font-family: 'Chau Philomene One', sans-serif; font-weight: bold;">Go to GitHub</div></a>
+<div class="more"><p>進階閱讀： <a href="http://git-scm.com/book/zh-tw/v1" target="_blank" class='link'>Pro Git</a> @git-scm.com</p></div>
+<a href="https://github.com/" target="_blank"><div id="footer">Go to GitHub</div></a>
 </body>
 </html>
