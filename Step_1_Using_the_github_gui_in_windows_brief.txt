@@ -1,4 +1,4 @@
-第一彈．超精簡github程式使用解說（不含網頁介面操作）
+第一彈．超精簡GitHub程式使用解說（不含網頁介面操作）
 
 GitHub 網址
 https://github.com/
