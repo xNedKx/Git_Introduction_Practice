@@ -13,41 +13,28 @@ html,body {
     font-family: 'Baumans', cursive;
 }
 #header {
-    padding: 16px;
+    padding: 0.5em;
     background-color: #F0F0F0;
     font-family: 'Chau Philomene One', sans-serif;
     font-size: 2em;
     border-bottom: 1px solid #CCC;
 }
-#content {
-    padding: 1em;
-}
-#content p {
-    margin: 0;
-    padding: 1em;
-}
-a.link {
-    text-decoration: none;
-    color: #35D;
-}
-a.link:hover {
-    color: #181;
-    cursor: pointer;
-}
-a.link:active {
-    color: #E20;
-}
-a.link:visited {
-    color: #810;
-}
-.more {
-    color: #555;
-}
+#content        { padding:1em;                      }
+#content p      { margin:0;    padding:1em;         }
+a               { text-decoration:none;             }
+a:hover         { cursor:pointer;                   }
+a:visited       { color:#810;                       }
+.link           { color:#35D;                       }
+.link:hover     { color:#181;                       }
+.link:active    { color:#E20;                       }
+.more           { margin-bottom:2em;    color:#555; }
+.li             { list-style:none;    padding:0;    }
+.li li          { padding:0.5em;                    }
 #footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
-    padding: 6px 0;
+    padding: 0.5em 0;
     color: #555;
     background-color: #F0F0F0;
     font-family: 'Chau Philomene One', sans-serif;
@@ -64,9 +51,12 @@ a.link:visited {
 <p><a href="./Step_2_Using_the_git_shell.txt" class='link'>第二彈．Git Shell的基本操作</a></p>
 <p><a>第三彈．Git Shell操作：分支的建立、合併與清除</a></p>
 <p><a>第四彈．Git Shell操作：commits重整</a></p>
-<p><a>第五彈．Git Shell操作：與人合作的Git</a></p>
+<p><a>第五彈．Git Shell操作：與人合作的Git及其他</a></p>
 </div>
-<div class="more"><p>進階閱讀： <a href="http://git-scm.com/book/zh-tw/v1" target="_blank" class='link'>Pro Git</a> @git-scm.com</p></div>
+<div class="more"><p>進階閱讀</p><ul class="li">
+<li>1. <a href="http://git-scm.com/book/zh-tw/v1" target="_blank" class='link'>Pro Git</a> @git-scm.com</li>
+<li>2. <a href="http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/zh_tw/index.html" target="_blank" class='link'>Git Magic</a> by <a href="http://repo.or.cz/gitmagic.git" target="_blank" class='link'>Ben Lynn</a></li>
+</ul></div>
 <a href="https://github.com/" target="_blank"><div id="footer">Go to GitHub</div></a>
 </body>
 </html>
