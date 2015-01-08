@@ -1,0 +1,31 @@
+第四彈．Git Shell操作：改變commit歷史
+
+/恢復到特定commit/
+01. 使用「git revert <commit>」將使目前分支資料恢復到該commit點，並留下一個revert的commit記錄。
+
+/重整記錄/
+02. 「git rebase -i <commit>」可以進入互動的rebase模式，將會讓使用者修改該commit點之後的所有commit。
+03. 進入互動模式後會跳出文字編輯器，每行內容起始為 pick <SHA> <commit message>，除pick外還有其他選擇，以下介紹一部分。
+04. 顯示順序跟log相反愈上方的愈早，pick代表保留該commit，可以直接改變commit的前後順序，而刪除該行將會直接刪除commit。
+05. 修改完rebase腳本後存檔離開，便會執行選擇的動作。
+TIPS: 使用HEAD~<number>代替<commit>將會修改最後N筆資料，HEAD代表著目前所在分支的最新commit，~N代表前第N個commit。
+
+/更改commit訊息/
+05. 把pick改成reword將會在之後依次執行遇到該commit時將會跳出文字編輯器，將內容修改成新的commit訊息存檔離開便會生效。
+TIPS: 如果只是一時的commit輸入錯誤，可以使用「git commit --amend」修改前次的commit訊息，並改變其SHA。
+
+/組合commit/
+06. 要將連續的commit合併，可以選擇squash或fixup，兩者都會把該commit併入之前的commit，差異只在於fixup不會保留commit訊息。
+07. 當執行到被合併的commit會跳出文字編輯器，要求輸入合併後的commit訊息，如同一般commit輸入存檔關閉便可。
+
+/切分commit/
+08. 要分割commit，請選擇edit，在執行到該commit時會自動暫停，此刻先執行「git reset HEAD^」清除當下index的前一筆資料。
+09. 接著再將要commit的不同部分資料分次stage & commit，完成之後輸入「git rebase --continue」讓rebase繼續便可。
+TIPS: 如果在rebase中想放棄，請用「git rebase --abort」指令。
+HINT: HEAD^代表HEAD的祖先commit點，如果祖先有分支，可以用HEAD^2代表另一個祖先，而HEAD^^大概等於HEAD~2。
+
+/批次修改/
+10. 如果需要匹次修改大量記錄，可以使用「git filter-branch」，詳細用法此處不加詳述，請參考其他資料。
+
+/使用警告/
+11. 請不要對已公開的commit歷史做rebase，若有他人同時在更新專案，rebase會攪亂他人來源的歷史，造成合併或更新的困難。
