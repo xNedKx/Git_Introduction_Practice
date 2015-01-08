@@ -1,0 +1,45 @@
+第三彈．Git Shell操作：分支的建立、合併與清除
+
+/建立與切換分支/
+01. 要建立新的分支，請使用「git branch <branch name>」，新分支會延續目前分支的歷史，可嘗試其他發展，需要再合併回主分支。
+02. 輸入「git checkout <branch>」，則可切換所在的分支到目標分支，此時若有未commit的資料會切換失敗。
+03. 若想一次做到，「git checkout -b <branch>」讓你直接建立並切換到新分支。
+TIPS: 可以使用「git stash」儲存狀態，之後要取出狀態要下「git stash apply」，要清除則是「git stash drop」。
+TIPS: 如果有多次stash儲存，可用「git stash list」查看，愈晚加入的放愈上面，以最新的stash@{0}為apply與drop的預設對象。
+TIPS: 「git stash pop」可以一次做到取出並刪除，另外可以在apply跟drop後加上「"stash@{<number>}"」指定特定的stash。
+
+/GitHub Pages/
+HINT: GitHub上將分支命名為「gh-pages」能建立專案網頁，瀏覽的網址為 http://<user>.github.io/<project>/<files path> 
+HINT: 請以「git branch --orphan gh-pages」建立空的gh-pages分支，再「git push origin gh-pages:gh-pages」更新GitHub的分支。
+
+/顯示分支/
+04. 「git branch -v」指令會顯示目前專案本機的所有分支，所在分支左方以*號標記。
+TIPS: 要更名分支，請用「git branch -m <branch> <new name>」，未指定分支時則會修改目前所在分支的名稱。
+
+/merge合併/
+05. 完成分枝發展，要將其合併回主分支或其他分支時，第一種方式為「git merge <branch>」，會將目標分支合併到目前的分支。
+06. 兩個分支對相同處有不同的修改，就有可能造成合併衝突，此時會停在合併途中，打開衝突的檔案可以看到標記，
+07. 在<<<<<<<與=======標記之間會顯示被合併方的資訊，=======與>>>>>>>之間則為合併方的資訊，
+08. 將檔案做適當修改，並刪除標記後，執行commit便可以完成。沒有衝突的話會自動留下合併記錄。
+HINT: 若合併時合併分支與基礎分支無分歧，會進行Fast-Forward合併，將基礎分支記錄快進到合併分支最新的位置。
+
+/rebase合併/
+09. 第二種方式的合併為「git rebase <branch>」，這會直接將目前分支所有commit移動到目標分支的後面，且不保留原本的SHA碼。
+10. rebase一樣會有產生衝突的機會，這時rebase會自己暫停，如同merge時將檔案修改完後，加入stage並commit，
+11. 再「git rebase --continue」繼續rebase，如果沒再遇到衝突便會完成，最後checkout到目標分支執行merge以快進更新記錄。
+HINT: merge合併會讓歷史記錄分分合合比較複雜，rebase合併會讓歷史記錄保持一條線，但可能會造成額外的歷史複製或錯誤。
+
+/cherry-pick/
+12. 如果要將特定的commit rebase到現在的分支，可以執行「git cherry-pick <commits>」選定commit移動到目前分支之後。
+TIPS: 另外使用「git rebase --onto <target branch> <over branch> <from branch>」會把在<over>上的<from>移到<target>上。
+TIPS: 或是用「git rebase --onto <to commit> <from commit>」把目前分支<from>之後的commit移到<to>後。
+
+/分支刪除/
+13. 如果分支已合併，不再需要特別記錄時「git branch -d <branch>」可以刪除分支指標，還沒有合併會執行失敗。
+14. 但是在不管他有沒有合併都要刪除的情況下，可以執行「git branch -D <branch>」強制刪除。
+
+/遠端分支管理/
+15. 如果要更新遠端未追蹤的分支，或是要把分支用其他名稱上傳，請用「git push <remote> <local branch>:<remote branch>」，
+16. 預設的遠端名稱為「origin」，可用「git remote -v」顯示遠端位址與名稱，如果把<local branch>留空則可以刪除遠端分支。
+HINT: 在本機建立的分支不會自動追蹤比較與遠端的差異，要先push到遠端再pull下來才會追蹤。
+HINT: clone下來的遠端分支會自動追蹤，可以用「git pull <remote>/<branch>」來更新特定分支。
