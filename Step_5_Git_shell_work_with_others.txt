@@ -1,0 +1,48 @@
+第五彈．Git Shell操作：與人合作的Git及其他
+
+/版本釋出/
+01. 要將某個commit點當作版本釋出時，可以用「git tag -a <tag name>」建立標籤，之後可以用tag當作commit的SHA使用。
+02. tag也用作版本標記，在指令加上「-m "<message>"」可以增加標籤訊息。單用「-l "<search>"」可以列出符合的tag。
+03. 另外如果有設定好私鑰的話，可以把「-a」改成「-s」作簽章，要驗證簽章時請用「-v」參數。最後「-d」可以刪除標籤。
+TIPS: 「git describe」可以找出最接近的有訊息標籤，會以<tag name>-<numbers>-<SHA>的方式顯示。
+
+/新增其他遠端來源/
+04. 當你正在工作的專案也有別人一起編輯時，你或許會想pull別人的部分來使用，可以先用「git remote add <name> <source>」
+05. 新增一個額外的來源，然後用「git <fetch/pull> <remote name>」來抓取進度。要移除來源請下「git remote rm <name>」。
+06. 如果只是要修改來源，可以用「git remote set-url <name> <source>」對已存在的遠端來源位址作編輯。
+
+/Fork/
+07. 在GitHub上看到別人的專案想要自己做改進，可以從該專案fork到自己的GitHub專案，會幫你建立一樣的專案repository讓你編輯。
+08. 編輯完成後想提供自己的修改給原作者參考要不要引入時，要做pull request，首先要將完成的專案放到GitHub上，
+09. 然後執行「git request-pull <remote origin> <your public repo>」送出要求到原本的遠端來源。
+
+/Patch/
+10. 執行「git format-patch」可以將更改裝成mbox檔案格式的patch，以利轉交給他人，要應用他人的patch時，
+11. 請用「git apply <patch>」或「git am <patch>」來匯入，am只接受format-patch生成的mbox，而apply還接受diff類型的patch。
+
+/建立可存取的repository/
+12. 要建立可以讓人存取的repository，先以「git <init/clone> --bare」建立不含工作區的資料夾，接著再看傳輸協定不同去設定。
+13. 像是檔案模式就只要給路徑就能存取，git://可以用「git daemon」掛載，若是要以http://方式傳輸可以使用apache，或使用SSH。
+
+/檔案修改追蹤/
+14. 使用「git blame <file>」可以看檔案的內容分別為哪幾次commit修改的結果，以^開頭的SHA代表第一次commit(新增檔案)。
+15. 如果要除錯，可以使用「git bisect start」，先以「git bisect bad」標定現在為不正常，
+16. 再以「git bisect good <commit>」標記之前正常的commit點，接著bisect會讓你依次存取commit狀態，如果該次沒問題，
+17. 就用「git bisect good」標記正常，如果發現錯誤則用「git bisect bad」標記錯誤，之後會自動往下一個commit前進，
+18. 結束時bisect會提示錯誤是在哪個commit發生，最後再用「git bisect reset」恢復到一般狀態。
+
+/小知識/
+19. 用「git config <parameters>」可以改變設定，用「git config --list」可以看目前的設定。
+20. 「git shortlog」會列出最近幾次的commit訊息。
+21. 「git gui」則會執行設定的GUI介面。
+
+/指標/
+22. git使用指標，一般的預設指標為HEAD，指向目前分支的最新commit，而分支的指標則分別指向其最新的commit，
+23. tag也是用指標指向特定的commit。前面有提到^與~符號可以改變指標所指的對象。而Fast-Forward合併就是簡單的指標移動。
+24. 另外有些時候想一次引入多個commit，可以使用以下幾種方法：
+25. 「<from> <to> [^<not>]」從from到to，可以選擇性去掉之中not的commit。例如從HEAD到HEAD前一個是「HEAD HEAD^」。
+26. 「<not in>..<but in>」則代表兩個分支，不在前者而在後者的commit。
+27. 「<diff of a>...<and b>」則是代表兩個分支相異的commit都算進去。
+
+/遠端push指標/
+28. 如果要對遠端的tag或branch等進行push，要使用「git push <refs>:<refs>」的形式，前者留空將會刪除指標。
