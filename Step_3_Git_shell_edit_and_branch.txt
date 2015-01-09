@@ -7,6 +7,7 @@
 TIPS: 可以使用「git stash」儲存狀態，之後要取出狀態要下「git stash apply」，要清除則是「git stash drop」。
 TIPS: 如果有多次stash儲存，可用「git stash list」查看，愈晚加入的放愈上面，以最新的stash@{0}為apply與drop的預設對象。
 TIPS: 「git stash pop」可以一次做到取出並刪除，另外可以在apply跟drop後加上「"stash@{<number>}"」指定特定的stash。
+TIPS: 使用「git stash brnach <name>」會把儲存的內容恢復到新的分支上，並且切換到該分支將該stash紀錄刪除。
 
 /GitHub Pages/
 HINT: GitHub上將分支命名為「gh-pages」能建立專案網頁，瀏覽的網址為 http://<user>.github.io/<project>/<files path> 
