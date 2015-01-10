@@ -44,3 +44,5 @@ TIPS: 或是用「git rebase --onto <to commit> <from commit>」把目前分支<
 16. 預設的遠端名稱為「origin」，可用「git remote -v」顯示遠端位址與名稱，如果把<local branch>留空則可以刪除遠端分支。
 HINT: 在本機建立的分支不會自動追蹤比較與遠端的差異，要先push到遠端再pull下來才會追蹤。
 HINT: clone下來的遠端分支會自動追蹤，可以用「git pull <remote>/<branch>」來更新特定分支。
+
+last update: 2015/01/10

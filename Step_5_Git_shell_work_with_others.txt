@@ -46,3 +46,5 @@ TIPS: 「git describe」可以找出最接近的有訊息標籤，會以<tag nam
 
 /遠端push指標/
 28. 如果要對遠端的tag或branch等進行push，要使用「git push <refs>:<refs>」的形式，前者留空將會刪除指標。
+
+last update: 2015/01/10
